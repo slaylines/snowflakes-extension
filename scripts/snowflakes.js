@@ -424,4 +424,10 @@ class SnowProgram {
 
     this.raf = window.requestAnimationFrame(this.update);
   }
+
+  stop() {
+    if (this.raf) {
+      window.cancelAnimationFrame(this.raf);
+    }
+  }
 }

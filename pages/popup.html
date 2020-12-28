@@ -3,12 +3,14 @@
   <head>
     <title>Snowflakes Extension Settings</title>
     <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="styles/popup.css">
+    <link type="text/css" rel="stylesheet" href="../styles/popup.css">
   </head>
   <body>
-    <div class="--snowflakes-container"></div>
-    <script src="src/svg_svm.js"></script>
-    <script src="src/svg_todaysLeft.js"></script>
-    <script src="src/popup.js"></script>
+    <div class="snowflakes-popup">
+      <input type="checkbox" id="enabled-switch" />
+      <label for="enabled-switch">Enabled</label>
+      <div>Snowflakes are <span>not</span> flying</div>
+    </div>
+    <script src="../scripts/popup.js"></script>
   </body>
 </html>
