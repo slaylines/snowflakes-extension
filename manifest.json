@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "SnowFlakes",
+  "version": "1.0.0",
+  "description": "Add snowflakes effect to any page for New Year mood!",
+  "permissions": ["activeTab", "storage"],
+  "icons": {
+    "128": "assets/logo.png"
+  },
+  "content_scripts": [{
+    "js": ["scripts/snowflakes.js", "scripts/content.js"],
+    "matches": ["<all_urls>"]
+  }],
+  "web_accessible_resources": ["*.png"],
+  "browser_action": {
+    "default_popup": "pages/popup.html"
+  }
+}
