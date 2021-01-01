@@ -5,11 +5,39 @@
     <meta charset="utf-8">
     <link type="text/css" rel="stylesheet" href="../styles/popup.css">
   </head>
-  <body>
-    <div class="snowflakes-popup">
+  <body class="popup">
+    <div class="switch">
       <input type="checkbox" id="enabled-switch" />
       <label for="enabled-switch">Enabled</label>
       <div>Snowflakes are <span>not</span> flying</div>
+    </div>
+    <div class="control">
+      <div class="title">Opacity</div>
+      <div class="slider opacity-slider">
+        <input type="range" value="80" min="0" max="100" step="10">
+        <span>80%</span>
+      </div>
+    </div>
+    <div class="control">
+      <div class="title">Count</div>
+      <div class="slider count-slider">
+        <input type="range" value="1000" min="0" max="2000" step="100">
+        <span>1000</span>
+      </div>
+    </div>
+    <div class="control">
+      <div class="title">Gravity</div>
+      <div class="slider gravity-slider">
+        <input type="range" value="100" min="0" max="500" step="50">
+        <span>100</span>
+      </div>
+    </div>
+    <div class="control">
+      <div class="title">Color</div>
+      <div class="color-picker">
+        <input type="color" value="#6482fa">
+        <span>#6482fa</span>
+      <div>
     </div>
     <script src="../scripts/popup.js"></script>
   </body>

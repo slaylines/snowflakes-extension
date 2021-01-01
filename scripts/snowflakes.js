@@ -96,6 +96,7 @@ class SnowProgram {
       height: '100vh',
       background: 'transparent',
       'pointer-events': 'none',
+      'z-index': 9999,
     };
 
     this.CAMERA = {
@@ -321,11 +322,12 @@ class SnowProgram {
         Math.random() * 10
       );
 
-      color.push(...this.color, 0.1 + Math.random() * this.opacity);
+      color.push(...this.color, Math.random() * this.opacity);
       size.push((5 * Math.random() * 5 * vh * dpi) / 1000);
     }
 
     this.setUniform('worldSize', [width, height, depth]);
+    this.setUniform('gravity', this.gravity);
 
     this.setBuffer('position', position);
     this.setBuffer('color', color);
