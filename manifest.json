@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "SnowFlakes",
   "version": "1.1.0",
-  "description": "Add snowflakes effect to any page for New Year mood!",
+  "description": "Add snowflakes effect to any page for the New Year mood!",
   "permissions": ["activeTab", "storage"],
   "icons": {
     "128": "assets/logo.png"
