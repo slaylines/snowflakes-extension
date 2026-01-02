@@ -142,8 +142,14 @@ class SnowProgram {
 
     this.resize = this.resize.bind(this);
     this.update = this.update.bind(this);
+    this.resizeTimeout = null;
 
-    window.addEventListener('resize', this.resize);
+    this.handleResize = () => {
+      clearTimeout(this.resizeTimeout);
+      this.resizeTimeout = setTimeout(() => this.resize(true), 150);
+    };
+
+    window.addEventListener('resize', this.handleResize);
   }
 
   initCanvas() {
@@ -446,9 +452,10 @@ class SnowProgram {
 
   cleanup() {
     this.stop();
+    clearTimeout(this.resizeTimeout);
 
-    if (this.resize) {
-      window.removeEventListener('resize', this.resize);
+    if (this.handleResize) {
+      window.removeEventListener('resize', this.handleResize);
     }
 
     if (this.$canvas && this.$canvas.parentNode) {
