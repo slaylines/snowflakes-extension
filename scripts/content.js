@@ -48,7 +48,3 @@ chrome.storage.onChanged.addListener((changes, area) => {
     }
   }
 });
-
-window.addEventListener('unload', () => {
-  removeSnow();
-});
