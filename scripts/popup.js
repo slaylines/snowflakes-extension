@@ -1,13 +1,10 @@
 const debounce = (func, delay = 100) => {
   let timerId;
 
-  return (...args) => {
-    if (timerId) { clearTimeout(timerId); }
-    timerId = setTimeout(() => {
-      func(...args);
-      timerId = null;
-    }, delay);
-  }
+  return function(...args) {
+    clearTimeout(timerId);
+    timerId = setTimeout(() => func.apply(this, args), delay);
+  };
 }
 
 const colorToHex = (c) => {
@@ -56,9 +53,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   colorPickerControl.addEventListener('input', debounce(event => {
     const { value } = event.target;
-    const r = parseInt(value.substr(1, 2), 16);
-    const g = parseInt(value.substr(3, 2), 16);
-    const b = parseInt(value.substr(5, 2), 16);
+    const r = parseInt(value.slice(1, 3), 16);
+    const g = parseInt(value.slice(3, 5), 16);
+    const b = parseInt(value.slice(5, 7), 16);
 
     chrome.storage.sync.set({ color: [r, g, b] });
     colorPickerValue.innerText = value;

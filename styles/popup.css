@@ -83,6 +83,8 @@ label:active:after {
   background: lightgrey;
   outline: none;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 .control .slider input::-webkit-slider-thumb {
   width: 12px;
@@ -92,10 +94,11 @@ label:active:after {
   background: white;
   border: 1px solid #a8b9fa;
   transition: background .15s ease-in-out;
-}
-.control .slider input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 }
+
 .control .slider input::-webkit-slider-thumb:hover,
 .control .slider input:active::-webkit-slider-thumb {
   background: #a8b9fa;
