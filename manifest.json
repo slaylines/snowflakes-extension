@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "SnowFlakes",
   "version": "1.2.0",
   "description": "Add snowflakes effect to any page for the New Year mood!",
@@ -11,8 +11,11 @@
     "js": ["scripts/snowflakes.js", "scripts/content.js"],
     "matches": ["<all_urls>"]
   }],
-  "web_accessible_resources": ["*.png"],
-  "browser_action": {
+  "web_accessible_resources": [{
+    "resources": ["*.png"],
+    "matches": ["<all_urls>"]
+  }],
+  "action": {
     "default_popup": "pages/popup.html"
   }
 }
