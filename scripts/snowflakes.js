@@ -123,6 +123,12 @@ class SnowProgram {
     const $canvas = this.initCanvas();
     const gl = $canvas.getContext('webgl', { antialias: true });
 
+    if (!gl) {
+      console.error('SnowFlakes: WebGL is not supported on this device');
+      $canvas.remove();
+      return false;
+    }
+
     $container.append($canvas);
 
     this.$canvas = $canvas;
@@ -358,6 +364,11 @@ class SnowProgram {
   render() {
     const { gl } = this;
 
+    if (!gl) {
+      console.error('SnowFlakes: Cannot render, WebGL context not available');
+      return this;
+    }
+
     gl.enable(gl.BLEND);
     gl.enable(gl.CULL_FACE);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
@@ -430,6 +441,18 @@ class SnowProgram {
   stop() {
     if (this.raf) {
       window.cancelAnimationFrame(this.raf);
+    }
+  }
+
+  cleanup() {
+    this.stop();
+
+    if (this.resize) {
+      window.removeEventListener('resize', this.resize);
+    }
+
+    if (this.$canvas && this.$canvas.parentNode) {
+      this.$canvas.parentNode.removeChild(this.$canvas);
     }
   }
 }

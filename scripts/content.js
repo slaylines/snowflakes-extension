@@ -8,12 +8,16 @@ let snowProgram = null;
 
 const removeSnow = () => {
   if (snowProgram) {
-    snowProgram.stop();
-    document.body.removeChild(snowProgram.$canvas);
+    snowProgram.cleanup();
+    snowProgram = null;
   }
 };
 const renderSnow = () => {
-  snowProgram = new SnowProgram(document.body, snowConfig).render();
+  removeSnow();
+  const program = new SnowProgram(document.body, snowConfig);
+  if (program.gl) {
+    snowProgram = program.render();
+  }
 };
 
 chrome.storage.sync.get(['enabled', 'opacity', 'count', 'gravity', 'color'], values => {
@@ -34,7 +38,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
       } else {
         removeSnow();
       }
-    } else {
+    } else if (snowProgram) {
       if (changes.opacity) { snowProgram.opacity = changes.opacity.newValue; }
       if (changes.count) { snowProgram.count = changes.count.newValue; }
       if (changes.gravity) { snowProgram.gravity = changes.gravity.newValue; }
@@ -43,4 +47,8 @@ chrome.storage.onChanged.addListener((changes, area) => {
       snowProgram.render();
     }
   }
+});
+
+window.addEventListener('unload', () => {
+  removeSnow();
 });

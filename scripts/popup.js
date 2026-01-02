@@ -17,10 +17,10 @@ const colorToHex = (c) => {
 
 window.addEventListener('DOMContentLoaded', () => {
   const enabledSwitch = document.querySelector('.switch input');
-  const notSpan = document.querySelector('.switch span');
+  const statusText = document.querySelector('.status-text');
 
   enabledSwitch.addEventListener('change', debounce(event => {
-    notSpan.style.display = event.target.checked ? 'none' : 'inline';
+    statusText.textContent = event.target.checked ? 'Let it snow!' : 'Stopped';
     chrome.storage.sync.set({ enabled: event.target.checked });
   }));
 
@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
   chrome.storage.sync.get(['enabled', 'opacity', 'count', 'gravity', 'color'], values => {
     const { enabled, opacity, count, gravity, color } = values;
 
-    notSpan.style.display = enabled !== false ? 'none' : 'inline';
+    statusText.textContent = enabled !== false ? 'Let it snow!' : 'Stopped';
     enabledSwitch.checked = enabled !== false;
 
     const opacityValue = opacity || opacity === 0
